@@ -1,6 +1,6 @@
 # Lumen PHP Project
 
-In this project you can manage your day by adding a tasks to do.
+In this project you can manage your day, by adding a tasks to do.
 
 # Instalation
 
