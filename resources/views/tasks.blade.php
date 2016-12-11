@@ -44,7 +44,7 @@
 						<input type="number" name="day2" min="1" max="31" value="30"/>
 						<input type="number" name="month2" min="1" max="12" value="12"/>
 						<input type="number" name="year2" min="1900" max="2100" value="2016"/><br/><br/>
-						<input type="submit" class="btn btn-primary"><br/><br/>
+						<button type="submit" class="btn btn-primary"> Zmień kryteria wyszukiwania</button><br/><br/>
 					</form>
 				</div>
 				
@@ -70,8 +70,21 @@
 							Wykonano
 							@endif
 							</td>
-							<td><a href='/tasks/changeTask/{{$value->id}}'>Zmień</a></td>
-							<td><a href='/tasks/deleteTask/{{$value->id}}'>Usuń zadanie</a></td>
+							<td>
+								<form method="GET" action='/tasks/changeTask/{{$value->id}}'>
+							
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">Zmień</button>
+									</div>
+								</form>
+							</td>
+							<td>
+								<form method="GET" action="/tasks/deleteTask/{{$value->id}}">
+									<div class="form-group">
+										<button type="submit" class="btn btn-primary">Usuń</button>
+									</div>
+								</form>
+							</td>
 						</tr>
 						@endforeach
 					</table>

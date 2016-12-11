@@ -58,4 +58,16 @@ class TasksController extends Controller
 		
        	return new RedirectResponse('\tasks');
     }
+	
+//deleting task
+	 public function deleteTask(Request $request, $id)
+    {
+		
+		$delete = \DB::delete(
+			'DELETE FROM tasks WHERE id = ?', [$id]
+		);
+		
+       	return new RedirectResponse('\tasks');
+    }
+	
 }

@@ -47,7 +47,7 @@
 						<input type="number" name="day2" min="1" max="31" value="30"/>
 						<input type="number" name="month2" min="1" max="12" value="12"/>
 						<input type="number" name="year2" min="1900" max="2100" value="2016"/><br/><br/>
-						<input type="submit" class="btn btn-primary"><br/><br/>
+						<button type="submit" class="btn btn-primary"> Zmień kryteria wyszukiwania</button><br/><br/>
 					</form>
 				</div>
 			
@@ -64,7 +64,13 @@
 					<tr>
 						<td>{{$value->day}}</td>
 						<td>{{$value->type}}</td>
-						<td><a href='/work/changeWork/{{$value->id}}'>Zmień</a></td>
+						<td>
+							<form method="GET" action='/work/changeWork/{{$value->id}}'>
+								<div class="form-group">
+									<button type="submit" class="btn btn-primary">Zmień</button>
+								</div>
+							</form>
+						</td>
 						<td><a href='/task/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
 						</a></td>
 					
