@@ -59,6 +59,7 @@
 						<td>Dostępność</td>
 						<td>Zmień dostępność</td>
 						<td>Zadania</td>
+					
 					</th>
 					@foreach ($result as $value)
 					<tr>
@@ -67,8 +68,9 @@
 						<td>{{$value->day}}</td>
 						<td>{{$value->type}}</td>
 						<td><a href='/work/changeWork/{{$value->id}}'>Zmień</a></td>
-						<td><a href='/task/showDayTask/{{$value->id}}'>Zadania</a></td>
-					</tr>
+						<td><a href='/task/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
+						</a></td>
+					
 					@endforeach
 				</table>
 			</div>
