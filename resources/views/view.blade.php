@@ -26,7 +26,10 @@
 				</div><!--/.container-fluid -->
 			  </nav>
 			</div>
-
+			
+			<div class="container">
+				<h1>Witaj w API PROJECT</h1>
+			</div>
 
 @stop
 
