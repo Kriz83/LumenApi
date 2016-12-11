@@ -50,18 +50,16 @@
 				
 				<div class="container">
 					<table class="table">
-						<th>
-							<td>ID</td>
-							<td>Dzień</td>
-							<td>Zadanie</td>
-							<td>Data dodania</td>
-							<td>Status</td>
-							<td>Zmień Status</td>
-						</th>
+						<tr>
+							<th>Dzień</th>
+							<th>Zadanie</th>
+							<th>Data dodania</th>
+							<th>Status</th>
+							<th>Zmień Status</th>
+							<th>Usuń zadanie</th>
+						</tr>
 						@foreach ($result as $value)
 						<tr>
-							<td></td>
-							<td>{{$value->id}}</td>
 							<td>{{$value->day}}</td>
 							<td>{{$value->topic}}</td>
 							<td>{{$value->adddate}}</td>
@@ -73,6 +71,7 @@
 							@endif
 							</td>
 							<td><a href='/tasks/changeTask/{{$value->id}}'>Zmień</a></td>
+							<td><a href='/tasks/deleteTask/{{$value->id}}'>Usuń zadanie</a></td>
 						</tr>
 						@endforeach
 					</table>

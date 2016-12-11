@@ -53,18 +53,15 @@
 			
 			<div class="container">
 				<table class="table">
-					<th>
-						<td>ID</td>
-						<td>Dzień</td>
-						<td>Dostępność</td>
-						<td>Zmień dostępność</td>
-						<td>Zadania</td>
+					<tr>
+						<th>Dzień</th>
+						<th>Dostępność</th>
+						<th>Zmień dostępność</th>
+						<th>Zadania</th>
 					
-					</th>
+					</tr>
 					@foreach ($result as $value)
 					<tr>
-						<td></td>
-						<td>{{$value->id}}</td>
 						<td>{{$value->day}}</td>
 						<td>{{$value->type}}</td>
 						<td><a href='/work/changeWork/{{$value->id}}'>Zmień</a></td>
