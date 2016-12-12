@@ -9,6 +9,7 @@ class TaskController extends Controller
 //showing a task list
     public function index()
     {
+		$result = \DB::table('tasks')->orderby('day');
 		return view('task' , compact('result'));
     }
 	
@@ -37,10 +38,11 @@ class TaskController extends Controller
 		return view('\task' , compact('result' , 'day'));
     }
 	
-	//changing task status	
+//changing task status	
 	 public function changeTask(Request $request, $id)
     {
         $result = \DB::select('SELECT * FROM tasks WHERE id = ?' , [$id]);
+		//foreach result to change a type of task from to do to accomplished
 		foreach ($result as $row) {
 			$type = $row->todo;
 			$day = $row->day;

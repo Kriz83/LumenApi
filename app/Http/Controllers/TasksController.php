@@ -5,15 +5,18 @@ use Illuminate\Http\RedirectResponse;
 
 class TasksController extends Controller
 {
+	
 //showing a task list
     public function index()
     {
 		$result = \DB::table('tasks')->orderby('day')->paginate(5);
 		return view('tasks' , compact('result'));
     }
+	
 //adding new task to database
 	 public function addTask(Request $request)
     {
+		//use current dateTime and concatenation of send data to pass it to database
 		$date = date('Y-m-d');
 		$todoDate = $request->year.'-'.$request->month.'-'.$request->day;
 		
@@ -23,9 +26,11 @@ class TasksController extends Controller
 		
 	return new RedirectResponse('\tasks');
     }
+	
 //shows tasks from range	
 	 public function showSelectedTasks(Request $request)
     {
+		//use concatenation of send data to pass it to database
 		$date1 = $request->year.'-'.$request->month.'-'.$request->day;
 		$date2 = $request->year2.'-'.$request->month2.'-'.$request->day2;
 		
@@ -35,10 +40,12 @@ class TasksController extends Controller
        	return view('\tasks' , compact('result'));
 	
     }
+	
 //changing task status	
 	 public function changeTask(Request $request, $id)
     {
         $result = \DB::select('SELECT * FROM tasks WHERE id = ?' , [$id]);
+		//foreach result to change a type of task from to do to accomplished
 		foreach ($result as $row) {
 			$type = $row->todo;
 		}
