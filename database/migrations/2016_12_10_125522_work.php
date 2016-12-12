@@ -12,7 +12,7 @@ class Work extends Migration
         Schema::create('work', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->date('day');
+			$table->date('day')->unique();
 			$table->string('type');
 			
 		});
