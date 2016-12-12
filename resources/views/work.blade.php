@@ -37,6 +37,11 @@
 				</div>
 			@else
 				<div class="container">
+				@if (isset($error) && $error == true)
+					<b>Dzień pracy już istnieje, dodaj zadania do istniejącego dnia</b>
+				@endif
+				</div>
+				<div class="container">
 					Wyświetl od:<br/>
 					<form method="POST" action="/work/showSelectedWork">
 						<input type="number" name="day" min="1" max="31" value="1" />
@@ -71,7 +76,7 @@
 								</div>
 							</form>
 						</td>
-						<td><a href='/task/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
+						<td><a href='/task/{{$value->day}}/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
 						</a></td>
 					
 					@endforeach

@@ -16,23 +16,24 @@ class WorkController extends Controller
 //adding a new work or holiday day
 	 public function addWork(Request $request)
     {
-//add a 0 to request day to proper comparsion
+	//add a 0 to request day to proper comparsion
 		if ($request->day < 10) {
 			$request->day = '0'.$request->day;
 		}
-//concatenation of date
+	//concatenation of date
        	$todoDate = $request->year.'-'.$request->month.'-'.$request->day;
 		
 		$result = \DB::select('SELECT * FROM work');
 		foreach ($result as $row) {
 			$day = ''.$row->day;
-//if date exists in database - redirect
+	//if date exists in database - redirect
 			if (strcmp($day, $todoDate) === 0) {
-				return new RedirectResponse('\work');
+				$error = true;
+				return view('work' , compact('result' , 'error'));
 			}
 		}
 
-//if date isn't allready in database, add to database
+	//if date isn't allready in database, add to database
 		$insert = \DB::insert(
 			'insert into work (day, type) values (?, ?)', [$todoDate, $request->workType]
 		);

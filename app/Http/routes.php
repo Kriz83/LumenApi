@@ -46,4 +46,8 @@ $app->get('tasks/deleteTask/{id}' , 'TasksController@deleteTask');
 
 $app->get('task' , 'TaskController@index');
 
-$app->get('task/showDayTask/{id}' , 'TaskController@showDayTask');
+$app->get('task/{day}/showDayTask/{id}' , 'TaskController@showDayTask');
+
+$app->post('task/addTask' , 'TaskController@addTask');
+
+$app->get('task/changeTask/{id}' , 'TaskController@changeTask');

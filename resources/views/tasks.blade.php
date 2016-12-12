@@ -92,23 +92,6 @@
 				<hr>
 			@endif
 			<div class="container">
-			
-				<form method="POST" action="/tasks/addTask">
-					<div class="form-group">	
-						<h3>Dodaj nowe zadanie</h3><br/>Temat Zadania:
-						<textarea name="topic" class="form-control"></textarea>
-					</div>
-					<div class="form-group">	
-						Data do wykonania:
-						<input type="number" name="day" min="1" max="31" value="1" />
-						<input type="number" name="month" min="1" max="12" value="12"/>
-						<input type="number" name="year" min="1900" max="2100" value="2016"/><br/>
-					</div>
-					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Wyślij</input>
-					</div>
-				</form>
 
-			</div>
 @stop
 
