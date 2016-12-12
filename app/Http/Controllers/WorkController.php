@@ -23,20 +23,21 @@ class WorkController extends Controller
 	//concatenation of date
        	$todoDate = $request->year.'-'.$request->month.'-'.$request->day;
 		
-		$result = \DB::select('SELECT * FROM work');
+		$result = \DB::table('work')->select('id' , 'day' , 'type')->get();
+		
 		foreach ($result as $row) {
 			$day = ''.$row->day;
 	//if date exists in database - redirect
 			if (strcmp($day, $todoDate) === 0) {
+				$result = \DB::table('work')->paginate(5);
 				$error = true;
 				return view('work' , compact('result' , 'error'));
 			}
 		}
 
 	//if date isn't allready in database, add to database
-		$insert = \DB::insert(
-			'insert into work (day, type) values (?, ?)', [$todoDate, $request->workType]
-		);
+		$insert = \DB::table('work')->insert(array('day' => $todoDate, 'type' => $request->workType));
+
 		return new RedirectResponse('\work');
 		
     }
@@ -44,21 +45,19 @@ class WorkController extends Controller
 //changing a type of day
 	public function changeWork(Request $request, $id)
     {
-		$result = \DB::select('SELECT * FROM work WHERE id = ?' , [$id]);
-		foreach ($result as $row) {
+		$result = \DB::table('work')->where('id', $id)->select('type')->get();
+		foreach($result as $row){
 			$type = $row->type;
 		}
-		
+	
 		if ($type == 'Praca') {
 			$type = 'Urlop';
 		} else {
 			$type = 'Praca';
 		}
-		
-		$insert = \DB::update(
-			'UPDATE work SET type = ? WHERE id = ?', [$type, $id]
-		);
-		
+	
+		$insert = \DB::table('work')->where('id', $id)->update(array('type' => $type));
+	
        	return new RedirectResponse('\work');
     }
 

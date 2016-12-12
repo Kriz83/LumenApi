@@ -9,7 +9,6 @@ class TaskController extends Controller
 //showing a task list
     public function index()
     {
-		$result = \DB::select('SELECT * FROM tasks ORDER BY day');
 		return view('task' , compact('result'));
     }
 	

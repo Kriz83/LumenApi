@@ -69,6 +69,7 @@
 						</tr>
 						@endforeach
 					</table>
+					
 				</div>
 				<hr>
 			@endif

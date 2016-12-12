@@ -80,7 +80,9 @@
 						</a></td>
 					@endforeach
 				</table>
+				
 				{{ $result->links() }}
+			
 			</div>
 			<br/><hr><br/>
 			@endif

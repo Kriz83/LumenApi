@@ -29,10 +29,7 @@ class TasksController extends Controller
 		$date1 = $request->year.'-'.$request->month.'-'.$request->day;
 		$date2 = $request->year2.'-'.$request->month2.'-'.$request->day2;
 		
-		$result = \DB::select(
-			'SELECT * FROM tasks WHERE day BETWEEN ? AND ?' , 
-			[$date1, $date2]
-		);
+		$result = \DB::table('tasks')->whereBetween('day' , array($date1, $date2))->orderby('day')->paginate(10);
 
 		
        	return view('\tasks' , compact('result'));
