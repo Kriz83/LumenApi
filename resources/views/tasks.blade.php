@@ -58,7 +58,7 @@
 							<th>Zmień Status</th>
 							<th>Usuń zadanie</th>
 						</tr>
-						@foreach ($result as $value)
+						@foreach ($result->all() as $value)
 						<tr>
 							<td>{{$value->day}}</td>
 							<td>{{$value->topic}}</td>
@@ -88,6 +88,7 @@
 						</tr>
 						@endforeach
 					</table>
+					{{ $result->links() }}
 				</div>
 				<hr>
 			@endif

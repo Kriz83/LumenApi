@@ -9,7 +9,7 @@ class WorkController extends Controller
 //shows all work days
     public function index()
     {
-        $result = \DB::select('SELECT * FROM work');
+        $result = \DB::table('work')->orderby('day')->paginate(5);
 		return view('work' , compact('result'));
     }
 	
@@ -68,10 +68,7 @@ class WorkController extends Controller
 		$date1 = $request->year.'-'.$request->month.'-'.$request->day;
 		$date2 = $request->year2.'-'.$request->month2.'-'.$request->day2;
 		
-		$result = \DB::select(
-			'SELECT * FROM work WHERE day BETWEEN ? AND ?' , 
-			[$date1, $date2]
-		);
+		$result = \DB::table('work')->whereBetween('day' , array($date1, $date2))->orderby('day')->paginate(10);
 
 		
        	return view('\work' , compact('result'));

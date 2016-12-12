@@ -65,7 +65,7 @@
 						<th>Zadania</th>
 					
 					</tr>
-					@foreach ($result as $value)
+					@foreach ($result->all() as $value)
 					<tr>
 						<td>{{$value->day}}</td>
 						<td>{{$value->type}}</td>
@@ -78,9 +78,9 @@
 						</td>
 						<td><a href='/task/{{$value->day}}/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
 						</a></td>
-					
 					@endforeach
 				</table>
+				{{ $result->links() }}
 			</div>
 			<br/><hr><br/>
 			@endif

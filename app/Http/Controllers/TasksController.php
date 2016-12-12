@@ -8,7 +8,7 @@ class TasksController extends Controller
 //showing a task list
     public function index()
     {
-		$result = \DB::select('SELECT * FROM tasks ORDER BY day');
+		$result = \DB::table('tasks')->orderby('day')->paginate(5);
 		return view('tasks' , compact('result'));
     }
 //adding new task to database
