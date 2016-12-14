@@ -1,6 +1,8 @@
 <?php namespace App;
 
-class Tasks extends Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class Tasks extends Model
 {
 	
 	protected $fillable = array('day' ,'topic' , 'adddate' , 'todo');

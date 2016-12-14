@@ -93,6 +93,22 @@
 				<hr>
 			@endif
 			<div class="container">
+			
+				<form method="POST" action="/tasks/addTask">
+					<div class="form-group">	
+						<h3>Dodaj nowe zadanie</h3><br/>Temat Zadania:
+						<textarea name="topic" class="form-control"></textarea>
+					</div>
+					<div class="form-group">
+						<input type="hidden" name="day" value="{{$value->day}}"/>
+					</div>
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">Wyślij</input>
+					</div>
+				</form>
+
+			</div>
+			
 
 @stop
 

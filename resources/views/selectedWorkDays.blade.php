@@ -1,5 +1,3 @@
-
-
 @extends('layout')
 
 
@@ -76,7 +74,7 @@
 								</div>
 							</form>
 						</td>
-						<td><a href='/tasks/{{$value->day}}/showDayTask'>Zadania z dnia <b>{{$value->day}}</b>
+						<td><a href='/tasks/{{$value->day}}/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
 						</a></td>
 					@endforeach
 				</table>

@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use App\Tasks;
 
 class TasksController extends Controller
 {
@@ -9,8 +10,19 @@ class TasksController extends Controller
 //showing a task list
     public function index()
     {
-		$result = \DB::table('tasks')->orderby('day')->paginate(5);
+		
+		$result = Tasks::orderBy('day' , 'ASC')->simplePaginate(5);
+		
 		return view('tasks' , compact('result'));
+    }
+	
+	//showing tasks from concrete day	
+	public function showDayTask(Request $request, $day)
+    {
+
+	  $result = Tasks::orderBy('day' , 'ASC')->where('day' , $day)->simplePaginate(5);
+		
+       	return view('tasks' , compact('result' , 'day'));
     }
 	
 //adding new task to database
@@ -18,13 +30,18 @@ class TasksController extends Controller
     {
 		//use current dateTime and concatenation of send data to pass it to database
 		$date = date('Y-m-d');
-		$todoDate = $request->year.'-'.$request->month.'-'.$request->day;
+
+		$insert = new Tasks;
+		$insert['day'] = $request->day;
+		$insert['topic'] = $request->topic;
+		$insert['adddate'] = $date;
+		$insert['todo'] = 1;
+		$insert->save();
 		
-		$insert = \DB::insert(
-			'insert into tasks (day, topic, adddate, todo) values (?, ?, ?, ?)', [$todoDate, $request->topic, $date, 1]
-		);
+		$result = Tasks::orderBy('day' , 'ASC')->where('day' , $request->day)->simplePaginate(5);
+
+		return view('tasks' , compact('result'));
 		
-	return new RedirectResponse('\tasks');
     }
 	
 //shows tasks from range	
@@ -34,21 +51,19 @@ class TasksController extends Controller
 		$date1 = $request->year.'-'.$request->month.'-'.$request->day;
 		$date2 = $request->year2.'-'.$request->month2.'-'.$request->day2;
 		
-		$result = \DB::table('tasks')->whereBetween('day' , array($date1, $date2))->orderby('day')->paginate(10);
-
-		return redirect()->with('result')->back();
-       	//return view('\tasks' , compact('result'));
+		$result = Tasks::whereBetween('day' , array($date1, $date2))->simplePaginate(5);
+		
+		return view('tasks' , compact('result'));
+       	
 	
     }
 	
 //changing task status	
 	 public function changeTask(Request $request, $id)
     {
-        $result = \DB::select('SELECT * FROM tasks WHERE id = ?' , [$id]);
+        $result =  Tasks::find($id);
+		$type = $result['todo'];
 		//foreach result to change a type of task from to do to accomplished
-		foreach ($result as $row) {
-			$type = $row->todo;
-		}
 		
 		if ($type == 1) {
 			$type = 0;
@@ -56,11 +71,12 @@ class TasksController extends Controller
 			$type = 1;
 		}
 		
-		$insert = \DB::update(
-			'UPDATE tasks SET todo = ? WHERE id = ?', [$type, $id]
-		);
+		$result['todo'] = $type;
+		$result->save();
 		
-       	return new RedirectResponse('\tasks');
+       	$result = Tasks::orderBy('day' , 'ASC')->simplePaginate(5);
+		
+       	return view('tasks' , compact('result'));
     }
 	
 //deleting task
