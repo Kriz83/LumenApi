@@ -92,6 +92,7 @@
 				</div>
 				<hr>
 			@endif
+			@if (isset($day))
 			<div class="container">
 			
 				<form method="POST" action="/tasks/addTask">
@@ -100,7 +101,7 @@
 						<textarea name="topic" class="form-control"></textarea>
 					</div>
 					<div class="form-group">
-						<input type="hidden" name="day" value="{{$value->day}}"/>
+						<input type="hidden" name="day" value="{{$day}}"/>
 					</div>
 					<div class="form-group">
 						<button type="submit" class="btn btn-primary">Wyślij</input>
@@ -108,7 +109,7 @@
 				</form>
 
 			</div>
-			
+			@endif
 
 @stop
 

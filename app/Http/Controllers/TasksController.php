@@ -38,9 +38,11 @@ class TasksController extends Controller
 		$insert['todo'] = 1;
 		$insert->save();
 		
-		$result = Tasks::orderBy('day' , 'ASC')->where('day' , $request->day)->simplePaginate(5);
+		$day = $request->day;
+		
+		$result = Tasks::orderBy('day' , 'ASC')->where('day' , $day)->simplePaginate(5);
 
-		return view('tasks' , compact('result'));
+		return view('tasks' , compact('result' , 'day'));
 		
     }
 	
