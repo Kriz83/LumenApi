@@ -51,7 +51,7 @@ class TasksController extends Controller
 		$date1 = $request->year.'-'.$request->month.'-'.$request->day;
 		$date2 = $request->year2.'-'.$request->month2.'-'.$request->day2;
 		
-		$result = Tasks::whereBetween('day' , array($date1, $date2))->simplePaginate(5);
+		$result = Tasks::orderBy('day' , 'ASC')->whereBetween('day' , array($date1, $date2))->simplePaginate(20);
 		
 		return view('tasks' , compact('result'));
        	
