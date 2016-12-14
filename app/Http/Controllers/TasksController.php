@@ -36,8 +36,8 @@ class TasksController extends Controller
 		
 		$result = \DB::table('tasks')->whereBetween('day' , array($date1, $date2))->orderby('day')->paginate(10);
 
-		
-       	return view('\tasks' , compact('result'));
+		return redirect()->with('result')->back();
+       	//return view('\tasks' , compact('result'));
 	
     }
 	

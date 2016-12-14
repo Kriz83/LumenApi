@@ -1,34 +1,18 @@
 <?php
 
 use App\Http\Controllers;
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It is a breeze. Simply tell Lumen the URIs it should respond to
-| and give it the Closure to call when that URI is requested.
-|
-*/
 
-/*$app->get('/', function () use ($app) {
-	$cars = ['Mercedes' , 'Honda'];
-	
-    return view('view' , compact('cars'));
-});
-*/
 $app->get('/','ViewController@index');
 
 $app->get('view','ViewController@index');
 
-$app->get('work' , 'WorkController@index');
+$app->get('workDays' , 'WorkDaysController@index');
 
-$app->post('work/addWork' , 'WorkController@addWork');
+$app->post('workDays/addWorkDay' , 'WorkDaysController@addWorkDay');
 
-$app->post('work/showSelectedWork' , 'WorkController@showSelectedWork');
+$app->post('workDays/showSelectedWorkDays' , 'WorkDaysController@showSelectedWorkDay');
 
-$app->get('work/changeWork/{id}' , 'WorkController@changeWork');
+$app->get('workDays/changeWorkDays/{id}' , 'WorkDaysController@changeWorkDay');
 
 
 $app->get('tasks' , 'TasksController@index');

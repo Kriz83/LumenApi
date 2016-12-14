@@ -1,6 +1,8 @@
 <?php namespace App;
 
-class Work extends Eloquent
+use Illuminate\Database\Eloquent\Model;
+
+class WorkDays extends Model
 {
 	
 	protected $fillable = array('day' , 'type');

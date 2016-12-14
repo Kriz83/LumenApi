@@ -16,7 +16,7 @@
 				  </div>
 				  <div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-					  <li class="active"><a href="/work">Dni pracy</a></li>
+					  <li class="active"><a href="/workDays">Dni pracy</a></li>
 					  <li><a href="/tasks">Wszystkie Zadania</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
@@ -43,7 +43,7 @@
 				</div>
 				<div class="container">
 					Wyświetl od:<br/>
-					<form method="POST" action="/work/showSelectedWork">
+					<form method="POST" action="/workDays/showSelectedWork">
 						<input type="number" name="day" min="1" max="31" value="1" />
 						<input type="number" name="month" min="1" max="12" value="12"/>
 						<input type="number" name="year" min="1900" max="2100" value="2016"/><br/>
@@ -70,13 +70,13 @@
 						<td>{{$value->day}}</td>
 						<td>{{$value->type}}</td>
 						<td>
-							<form method="GET" action='/work/changeWork/{{$value->id}}'>
+							<form method="GET" action='/workDays/changeWork/{{$value->id}}'>
 								<div class="form-group">
 									<button type="submit" class="btn btn-primary">Zmień</button>
 								</div>
 							</form>
 						</td>
-						<td><a href='/task/{{$value->day}}/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
+						<td><a href='/tasks/{{$value->day}}/showDayTask/{{$value->id}}'>Zadania z dnia <b>{{$value->day}}</b>
 						</a></td>
 					@endforeach
 				</table>
@@ -89,7 +89,7 @@
 			
 			<div class="container">
 			
-				<form method="POST" action="/work/addWork">
+				<form method="POST" action="/workDays/addWorkDay">
 				<h2>Dodaj dni pracy</h2>
 					<div class="form-group">	
 						<b>Data dostępności:</b>

@@ -14,7 +14,7 @@
 				  </div>
 				  <div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-					  <li><a href="/work">Dni pracy</a></li>
+					  <li><a href="/workDays">Dni pracy</a></li>
 					  <li class="active" ><a href="/tasks">Wszystkie Zadania</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
