@@ -16,6 +16,7 @@ class Tasks extends Migration
 			$table->longText('topic' , 255);
 			$table->timestampTz('adddate');
 			$table->integer('todo');
+			$table->Timestamps();
 		});
     }
 
