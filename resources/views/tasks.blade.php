@@ -14,12 +14,12 @@
 				  </div>
 				  <div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-					  <li><a href="/workDays">Dni pracy</a></li>
-					  <li class="active" ><a href="/tasks">Wszystkie Zadania</a></li>
+					  <li><a href="/workDays">Work days</a></li>
+					  <li class="active" ><a href="/tasks">All tasks</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 					  
-					  <li><a href="">O stronie</a></li>
+					  <li><a href="">About</a></li>
 					  
 					</ul>
 				  </div><!--/.nav-collapse -->
@@ -29,34 +29,34 @@
 			@if (empty($result))
 				<div class="container">
 					<hr>
-					<h2>Brak zadań</h2>
+					<h2>There are no task</h2>
 					<hr>
 				</div>
 			@else
 				<div class="container">
-					Wyświetl od:<br/>
+					Show from:<br/>
 					<form method="POST" action="/tasks/showSelectedTasks">
 						<input type="number" name="day" min="1" max="31" value="1" />
 						<input type="number" name="month" min="1" max="12" value="12"/>
 						<input type="number" name="year" min="1900" max="2100" value="2016"/><br/>
-						Wyświetl do:<br/>
+						Show to:<br/>
 
 						<input type="number" name="day2" min="1" max="31" value="30"/>
 						<input type="number" name="month2" min="1" max="12" value="12"/>
 						<input type="number" name="year2" min="1900" max="2100" value="2016"/><br/><br/>
-						<button type="submit" class="btn btn-primary"> Zmień kryteria wyszukiwania</button><br/><br/>
+						<button type="submit" class="btn btn-primary"> Change search values</button><br/><br/>
 					</form>
 				</div>
 				
 				<div class="container">
 					<table class="table">
 						<tr>
-							<th>Dzień</th>
-							<th>Zadanie</th>
-							<th>Data dodania</th>
+							<th>Day</th>
+							<th>Task</th>
+							<th>Add date</th>
 							<th>Status</th>
-							<th>Zmień Status</th>
-							<th>Usuń zadanie</th>
+							<th>Change status</th>
+							<th>Remove task</th>
 						</tr>
 						@foreach ($result->all() as $value)
 						<tr>
@@ -65,23 +65,23 @@
 							<td>{{$value->adddate}}</td>
 							<td>
 							@if ($value->todo)
-							Do wykonania
+							Task to do
 							@else
-							Wykonano
+							done allready
 							@endif
 							</td>
 							<td>
 								<form method="GET" action='/tasks/changeTask/{{$value->id}}'>
 							
 									<div class="form-group">
-										<button type="submit" class="btn btn-primary">Zmień</button>
+										<button type="submit" class="btn btn-primary">Change</button>
 									</div>
 								</form>
 							</td>
 							<td>
 								<form method="GET" action="/tasks/deleteTask/{{$value->id}}">
 									<div class="form-group">
-										<button type="submit" class="btn btn-primary">Usuń</button>
+										<button type="submit" class="btn btn-primary">Remove</button>
 									</div>
 								</form>
 							</td>
@@ -97,14 +97,14 @@
 			
 				<form method="POST" action="/tasks/addTask">
 					<div class="form-group">	
-						<h3>Dodaj nowe zadanie</h3><br/>Temat Zadania:
+						<h3>Add new task</h3><br/>Task topic:
 						<textarea name="topic" class="form-control"></textarea>
 					</div>
 					<div class="form-group">
 						<input type="hidden" name="day" value="{{$day}}"/>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Wyślij</input>
+						<button type="submit" class="btn btn-primary">Send</input>
 					</div>
 				</form>
 

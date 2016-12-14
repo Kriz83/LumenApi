@@ -14,12 +14,12 @@
 				  </div>
 				  <div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-					  <li><a href="workDays">Dni pracy</a></li>
-					  <li><a href="tasks">Wszystkie Zadania</a></li>
+					  <li><a href="workDays">Work days</a></li>
+					  <li><a href="tasks">All tasks</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 					  
-					  <li><a href="">O stronie</a></li>
+					  <li><a href="">About</a></li>
 					  
 					</ul>
 				  </div><!--/.nav-collapse -->
@@ -28,7 +28,7 @@
 			</div>
 			
 			<div class="container">
-				<h1>Witaj w API PROJECT</h1>
+				<h1>Welcome in API PROJECT</h1>
 			</div>
 
 @stop

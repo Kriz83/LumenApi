@@ -16,12 +16,12 @@
 				  </div>
 				  <div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
-					  <li class="active"><a href="/workDays">Dni pracy</a></li>
-					  <li><a href="/tasks">Wszystkie Zadania</a></li>
+					  <li class="active"><a href="/workDays">Work days</a></li>
+					  <li><a href="/tasks">All tasks</a></li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right">
 					  
-					  <li><a href="">O stronie</a></li>
+					  <li><a href="">About</a></li>
 					  
 					</ul>
 				  </div><!--/.nav-collapse -->
@@ -32,37 +32,37 @@
 			@if (empty($result))
 				<div class="container">
 					<hr>
-					<h2>Brak dodanych dni pracy</h2>
+					<h2>There are no work days added</h2>
 					<hr>
 				</div>
 			@else
 				<div class="container">
 				@if (isset($error) && $error == true)
-					<b>Dzień pracy już istnieje, dodaj zadania do istniejącego dnia</b>
+					<b>Day of Work allready exists, add diffrent date</b>
 				@endif
 				</div>
 				<div class="container">
-					Wyświetl od:<br/>
+					Show from:<br/>
 					<form method="POST" action="/workDays/selectedWorkDays">
 						<input type="number" name="day" min="1" max="31" value="1" />
 						<input type="number" name="month" min="1" max="12" value="12"/>
 						<input type="number" name="year" min="1900" max="2100" value="2016"/><br/>
-						Wyświetl do:<br/>
+						Show to:<br/>
 
 						<input type="number" name="day2" min="1" max="31" value="30"/>
 						<input type="number" name="month2" min="1" max="12" value="12"/>
 						<input type="number" name="year2" min="1900" max="2100" value="2016"/><br/><br/>
-						<button type="submit" class="btn btn-primary"> Zmień kryteria wyszukiwania</button><br/><br/>
+						<button type="submit" class="btn btn-primary"> Change search values</button><br/><br/>
 					</form>
 				</div>
 			
 			<div class="container">
 				<table class="table">
 					<tr>
-						<th>Dzień</th>
-						<th>Dostępność</th>
-						<th>Zmień dostępność</th>
-						<th>Zadania</th>
+						<th>Day</th>
+						<th>Availability</th>
+						<th>Change availability</th>
+						<th>Tasks</th>
 					
 					</tr>
 					@foreach ($result->all() as $value)
@@ -72,11 +72,11 @@
 						<td>
 							<form method="GET" action='/workDays/changeWorkDay/{{$value->id}}'>
 								<div class="form-group">
-									<button type="submit" class="btn btn-primary">Zmień</button>
+									<button type="submit" class="btn btn-primary">Change</button>
 								</div>
 							</form>
 						</td>
-						<td><a href='/tasks/{{$value->day}}/showDayTask'>Zadania z dnia <b>{{$value->day}}</b>
+						<td><a href='/tasks/{{$value->day}}/showDayTask'>Tasks from day <b>{{$value->day}}</b>
 						</a></td>
 					@endforeach
 				</table>
@@ -90,19 +90,19 @@
 			<div class="container">
 			
 				<form method="POST" action="/workDays/addWorkDay">
-				<h2>Dodaj dni pracy</h2>
+				<h2>Add work days</h2>
 					<div class="form-group">	
-						<b>Data dostępności:</b>
+						<b>Availability date:</b>
 						<input type="number" name="day" min="1" max="31" value="1" />
 						<input type="number" name="month" min="1" max="12" value="12"/>
 						<input type="number" name="year" min="1900" max="2100" value="2016"/><br/>
 					</div>
 					<div class="form-group">	
-						<label><input type="radio" name="workType" value="Praca" checked> Praca</input></label><br/>
-						<label><input type="radio" name="workType" value="Urlop"> Urlop</input></label><br>
+						<label><input type="radio" name="workType" value="Work" checked> Work</input></label><br/>
+						<label><input type="radio" name="workType" value="Holiday"> Holiday</input></label><br>
 					</div>
 					<div class="form-group">
-						<button type="submit" class="btn btn-primary">Wyślij</input>
+						<button type="submit" class="btn btn-primary">Send</input>
 					</div>
 				</form>
 

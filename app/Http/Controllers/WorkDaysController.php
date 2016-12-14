@@ -65,10 +65,10 @@ class WorkDaysController extends Controller
 		$update =  WorkDays::find($id);
 		$type = $update['type'];
 		
-		if ($type == 'Praca') {
-			$type = 'Urlop';
+		if ($type == 'Work') {
+			$type = 'Holiday';
 		} else {
-			$type = 'Praca';
+			$type = 'Work';
 		}
 		
 	//if date isn't allready in database, add to database
