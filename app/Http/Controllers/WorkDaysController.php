@@ -12,6 +12,7 @@ class WorkDaysController extends Controller
     {
 		
         $result = WorkDays::orderBy('day' , 'ASC')->simplePaginate(5);
+		
 		return view('workDays' , compact('result'));
 		
     }
@@ -48,8 +49,10 @@ class WorkDaysController extends Controller
 
 	//if date isn't allready in database, add to database
 		$insert = new WorkDays;
+		
 		$insert['day'] = $todoDate;
 		$insert['type'] = $request->workType;
+		
 		$insert->save();
 		
 		$result = WorkDays::simplePaginate(5);
@@ -63,6 +66,7 @@ class WorkDaysController extends Controller
     {
 		
 		$update =  WorkDays::find($id);
+	//check type of work and change to different	
 		$type = $update['type'];
 		
 		if ($type == 'Work') {

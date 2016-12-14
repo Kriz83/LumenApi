@@ -85,9 +85,9 @@ class TasksController extends Controller
 	 public function deleteTask(Request $request, $id)
     {
 		
-		$delete = \DB::delete(
-			'DELETE FROM tasks WHERE id = ?', [$id]
-		);
+		$result =  Tasks::find($id);
+		
+		$result->delete();
 		
        	return new RedirectResponse('\tasks');
     }
