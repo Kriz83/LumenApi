@@ -11,7 +11,7 @@ class TasksController extends Controller
     public function index()
     {
 		
-		$result = Tasks::orderBy('day' , 'ASC')->simplePaginate(5);
+		$result = Tasks::orderBy('day' , 'ASC')->simplePaginate(10);
 		
 		return view('tasks' , compact('result'));
     }
@@ -20,7 +20,7 @@ class TasksController extends Controller
 	public function showDayTask(Request $request, $day)
     {
 
-	  $result = Tasks::orderBy('day' , 'ASC')->where('day' , $day)->simplePaginate(5);
+	  $result = Tasks::orderBy('day' , 'ASC')->where('day' , $day)->simplePaginate(10);
 		
        	return view('tasks' , compact('result' , 'day'));
     }
@@ -40,7 +40,7 @@ class TasksController extends Controller
 		
 		$day = $request->day;
 		
-		$result = Tasks::orderBy('day' , 'ASC')->where('day' , $day)->simplePaginate(5);
+		$result = Tasks::orderBy('day' , 'ASC')->where('day' , $day)->simplePaginate(10);
 
 		return view('tasks' , compact('result' , 'day'));
 		

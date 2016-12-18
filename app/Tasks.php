@@ -12,7 +12,7 @@ class Tasks extends Model
 	public function work()
 	{
 		
-		return $this->belongsTo('Work');
+		return $this->belongsTo(WorkDays::class);
 		
 	}
 	

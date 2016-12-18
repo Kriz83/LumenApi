@@ -10,7 +10,7 @@ class WorkDays extends Model
 	public function task()
 	{
 		
-		return $this->hasMany('Tasks');
+		return $this->hasMany(Task::class);
 		
 	}
 	

@@ -9,7 +9,8 @@ class WorkController extends Controller
 //shows all work days
     public function index()
     {
-        $result = \DB::table('work')->orderby('day')->paginate(5);
+        $result = WorkDays::orderBy('day' , 'ASC')->simplePaginate(10);
+		
 		return view('work' , compact('result'));
     }
 	
@@ -23,22 +24,27 @@ class WorkController extends Controller
 	//concatenation of date
        	$todoDate = $request->year.'-'.$request->month.'-'.$request->day;
 		
-		$result = \DB::table('work')->select('id' , 'day' , 'type')->get();
+		$result = WorkDays::all();
 		
 		foreach ($result as $row) {
 			$day = ''.$row->day;
 	//if date exists in database - redirect
 			if (strcmp($day, $todoDate) === 0) {
-				$result = \DB::table('work')->paginate(5);
+				$result = WorkDays::orderBy('day' , 'ASC')->simplePaginate(10);
 				$error = true;
 				return view('work' , compact('result' , 'error'));
 			}
 		}
 
 	//if date isn't allready in database, add to database
-		$insert = \DB::table('work')->insert(array('day' => $todoDate, 'type' => $request->workType));
-
-		return new RedirectResponse('\work');
+		$insert = new WorkDays;
+		$insert->day = $todoDate;
+		$insert->type = $request->type;
+		$insert->save();
+		
+        $result = WorkDays::orderBy('day' , 'ASC')->simplePaginate(10);
+		
+		return view('work' , compact('result'));
 		
     }
 	
